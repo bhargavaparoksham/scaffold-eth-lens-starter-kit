@@ -29,7 +29,7 @@ import externalContracts from "./contracts/external_contracts";
 // contracts
 import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
-import { Home, ExampleUI, Hints, Subgraph } from "./views";
+import { Dashboard, Home, ExampleUI, Hints, Subgraph } from "./views";
 import { useStaticJsonRPC } from "./hooks";
 
 const { ethers } = require("ethers");
@@ -269,7 +269,7 @@ function App(props) {
         </Menu.Item>
         <Menu.Item key="/hints">
           <Link to="/hints">Hints</Link>
-        {/*</Menu.Item>
+          {/*</Menu.Item>
         <Menu.Item key="/mainnetdai">
           <Link to="/mainnetdai">Mainnet DAI</Link>*/}
         </Menu.Item>
@@ -282,6 +282,9 @@ function App(props) {
         <Route exact path="/">
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
           <Home yourLocalBalance={yourLocalBalance} readContracts={readContracts} />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard address={address} />
         </Route>
         <Route exact path="/debug">
           {/*
@@ -327,7 +330,6 @@ function App(props) {
             blockExplorer={blockExplorer}
             contractConfig={contractConfig}
           />
-
         </Route>
         <Route path="/hints">
           <Hints
@@ -352,7 +354,7 @@ function App(props) {
             blockExplorer={blockExplorer}
           />
         </Route>
-{/*        <Route path="/mainnetdai">
+        {/*        <Route path="/mainnetdai">
           <Contract
             name="DAI"
             customContract={mainnetContracts && mainnetContracts.contracts && mainnetContracts.contracts.DAI}
